@@ -16,8 +16,9 @@ WARNING:
 
 # Supported tags and respective `Dockerfile` links
 
--	[`7.4.0`](https://github.com/docker-library/logstash/blob/3f6d4dd6f59c7c627aeb2908009935d66b46b3f0/7/Dockerfile)
--	[`6.8.3`](https://github.com/docker-library/logstash/blob/346baa394828982908410b99d4d7fe25e07153e3/6/Dockerfile)
+**No supported tags found!**
+
+It is very likely that `logstash` does not support the currently selected architecture (`arm32v6`).
 
 # Quick reference
 
