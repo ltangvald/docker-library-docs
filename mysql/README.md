@@ -151,6 +151,29 @@ If you would like to see a complete list of available options, just run:
 $ docker run -it --rm mysql:tag --verbose --help
 ```
 
+## Upgrading from previous versions
+
+*NOTE*: This is not required for 8.0, which handles upgrades automatically, but must be performed before upgrading to 8.0 from an older version.
+
+There are four basic steps to upgrading your MySQL image:
+- Stopping the old container: This needs to be a graceful shutdown. Using docker's stop command should be sufficient for this.
+```console
+$ docker stop old-mysql
+```
+- Starting the new container with the same database directory:
+```console
+$ docker run -v datapath:/var/lib/mysql --name=new-mysql -d mysql:5.7
+```
+- Executing mysql_upgrade command: The default root user or one with equivalent access is required.
+```console
+$ docker exec -it new-mysql mysql_upgrade -uroot -p
+```
+- Restarting MySQL:
+```console
+$ docker restart new-mysql
+```
+See also https://dev.mysql.com/doc/refman/5.7/en/upgrading.html
+
 ## Environment Variables
 
 When you start the `mysql` image, you can adjust the configuration of the MySQL instance by passing one or more environment variables on the `docker run` command line. Do note that none of the variables below will have any effect if you start the container with a data directory that already contains a database: any pre-existing database will always be left untouched on container startup.
